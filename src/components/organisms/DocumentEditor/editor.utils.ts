@@ -7,3 +7,9 @@ export const setCaretToEnd = (element: HTMLElement) => {
   selection.addRange(range)
   element.focus()
 }
+
+export const getNodeByDataBlockId = (
+  blockListNode: HTMLElement,
+  dataBlockId: string
+) =>
+  blockListNode.querySelector<HTMLDivElement>(`[data-blockid="${dataBlockId}"]`)

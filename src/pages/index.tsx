@@ -8,6 +8,7 @@ function Index() {
 
   return (
     <LayoutWithSidebar>
+      {JSON.stringify(session)}
       <Button className="self-end" onClick={() => signOut()}>
         SignOut
       </Button>
