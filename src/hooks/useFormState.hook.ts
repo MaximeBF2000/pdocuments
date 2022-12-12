@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 type UpdateState = <T>(
   inputName: string,
-  callbackOrValue?: (event: T) => any | any
+  callbackOrValue?: ((event: T) => any) | any
 ) => (event: T) => void
 
 export const useFormState = <FormType>(formState: FormType) => {
