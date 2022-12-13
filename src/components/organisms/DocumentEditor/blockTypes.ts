@@ -1,4 +1,4 @@
-import type { BlockType } from './editor'
+import type { BlockType } from './editor.d'
 
 export const blockTypes: BlockType[] = [
   {

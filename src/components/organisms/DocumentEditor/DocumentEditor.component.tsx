@@ -1,20 +1,15 @@
 import React, { useRef } from 'react'
-import {
-  DocumentEditorProps,
-  BlockProps,
-  KeyboardBlockEventHandler,
-  KeyboardKeys
-} from './editor.d'
+import { BlockProps, KeyboardBlockEventHandler, KeyboardKeys } from './editor.d'
 import { Menu } from './Menu.component'
 import { componentByElements } from './componentsByElements'
 import { useToggle } from '@/hooks'
 import { useMenu } from './useMenu.hook'
 import { useBlocks } from './useBlocks.hook'
 
-export const DocumentEditor: React.FC<DocumentEditorProps> = () => {
+export const DocumentEditor: React.FC = () => {
   const blockListRef = useRef<HTMLUListElement>(null)
   const menuRef = useRef<HTMLElement>(null)
-  const [isShifting, toggleIsShifting] = useToggle()
+  const [_, toggleIsShifting] = useToggle()
 
   const {
     blocks,
@@ -29,13 +24,11 @@ export const DocumentEditor: React.FC<DocumentEditorProps> = () => {
     blockListRef
   })
 
-  const handleKeyUp: KeyboardBlockEventHandler = (event, block) => {
+  const handleKeyUp: KeyboardBlockEventHandler = (event, _) => {
     if (event.key === KeyboardKeys.SLASH) return toggleIsShifting(false)
   }
 
   const handleKeyDown: KeyboardBlockEventHandler = (event, block) => {
-    // console.log('Block child Event -> ', event)
-
     switch (event.key) {
       case KeyboardKeys.SHIFT:
         return toggleIsShifting(true)
@@ -50,12 +43,6 @@ export const DocumentEditor: React.FC<DocumentEditorProps> = () => {
     }
   }
 
-  const handleParentKeyDown = event => {
-    console.log('Parent Event -> ', {
-      event
-    })
-  }
-
   return (
     <div className="bg-white w-full p-4">
       <ul
@@ -63,7 +50,7 @@ export const DocumentEditor: React.FC<DocumentEditorProps> = () => {
         className="outline-none"
         // contentEditable
         // suppressContentEditableWarning
-        // onKeyDown={handleParentKeyDown}
+        // onKeyDown={parentEvent => console.log({ parentEvent })}
       >
         {blocks?.map(block => {
           const BlockField: React.FC<BlockProps> =

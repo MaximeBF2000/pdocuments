@@ -11,26 +11,31 @@ export const componentByElements = {
       {...defaultProps}
       {...props}
       className={cx('font-black text-4xl', props.className)}
-      children={props.content}
-    />
+    >
+      {props.content}
+    </h1>
   ),
   h2: ({ ...props }) => (
     <h2
       {...defaultProps}
       {...props}
       className={cx('font-extrabold text-3xl', props.className)}
-      children={props.content}
-    />
+    >
+      {props.content}
+    </h2>
   ),
   h3: ({ ...props }) => (
     <h3
       {...defaultProps}
       {...props}
       className={`font-bold text-2xl ${props.className}`}
-      children={props.content}
-    />
+    >
+      {props.content}
+    </h3>
   ),
   text: ({ ...props }) => (
-    <p {...defaultProps} {...props} children={props.content} />
+    <p {...defaultProps} {...props}>
+      {props.content}
+    </p>
   )
 } as const

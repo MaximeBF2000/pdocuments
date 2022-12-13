@@ -1,7 +1,5 @@
 import React from 'react'
 
-export interface DocumentEditorProps {}
-
 export interface Block {
   id: string
   content: string

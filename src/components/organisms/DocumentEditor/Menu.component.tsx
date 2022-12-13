@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useMemo } from 'react'
 import styled from 'styled-components'
 import { arrUpdateAtIndex } from '@/utils/array'
 import { blockTypes } from './blockTypes'
@@ -22,8 +22,12 @@ export const Menu: React.FC<MenuProps> = ({
   const searchInputRef = useRef<HTMLInputElement>(null)
   const [search, setSearch] = useState('')
 
-  const filteredBlocksTypes = blockTypes.filter(blockType =>
-    blockType.label.toLowerCase().includes(search.toLowerCase())
+  const filteredBlocksTypes = useMemo(
+    () =>
+      blockTypes.filter(blockType =>
+        blockType.label.toLowerCase().includes(search.toLowerCase())
+      ),
+    [search, blockTypes]
   )
 
   const closeMenuOnEscapeKey = event => {
@@ -59,7 +63,7 @@ export const Menu: React.FC<MenuProps> = ({
 
   return (
     <StyledMenu
-      className={`bg-white shadow absolute rounded`}
+      className={'bg-white shadow absolute rounded'}
       x={x}
       y={y}
       ref={menuRef}
